@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import getGenDiffHelp from '../src/index.js';
+import genDiff from '../src/index.js';
 
-getGenDiffHelp();
+genDiff();
