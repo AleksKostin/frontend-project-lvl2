@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import genDiffJson from '../src/index.js';
+import genDiff from '../src/index.js';
 
 const program = new Command();
 program
@@ -12,11 +12,6 @@ program
   .option('-f, --format <type>', 'output format')
   .helpOption('-h, --help', 'output usage information')
   .action((filePath1, filePath2) => {
-    const [, formatFile1] = filePath1.split('.');
-    const [, formatFile2] = filePath2.split('.');
-    if (formatFile1 === 'json' && formatFile2 === 'json') {
-      console.log(genDiffJson(filePath1, filePath2));
-    }
-    // console.log('error');
+    console.log(genDiff(filePath1, filePath2));
   });
 program.parse();

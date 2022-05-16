@@ -1,16 +1,12 @@
-import { readFileSync } from 'fs';
-import path from 'path';
 import _ from 'lodash';
+import getParseFile from './parsers.js';
 
-const readFile = (filePath) => {
-  const fullPath = path.resolve(process.cwd(), filePath);
-  const data = readFileSync(fullPath, 'utf8');
-  return data;
-};
-
-const genDiffJson = (filePath1, filePath2) => {
-  const data1 = JSON.parse(readFile(filePath1));
-  const data2 = JSON.parse(readFile(filePath2));
+const genDiff = (filePath1, filePath2) => {
+  const data1 = getParseFile(filePath1);
+  const data2 = getParseFile(filePath2);
+  if (data1 === 'error' || data2 === 'error') {
+    return 'file format not supported';
+  }
   const keysOfData1 = Object.keys(data1);
   const keysOfData2 = Object.keys(data2);
   const concatKeys = [...keysOfData1, ...keysOfData2];
@@ -31,8 +27,7 @@ const genDiffJson = (filePath1, filePath2) => {
     }
     return `${tab}${tab}${key}: ${data1[key]}`;
   });
-  const result = ['{', ...diff, '}'];
-  return result.join('\n');
+  return ['{', ...diff, '}'].join('\n');
 };
 
-export default genDiffJson;
+export default genDiff;
