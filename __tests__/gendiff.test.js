@@ -14,6 +14,7 @@ const file4 = getFixturePath('nested_yml2.yml');
 
 const expected1 = readFileSync(getFixturePath('correct_nested.txt'), 'utf8');
 const expected2 = readFileSync(getFixturePath('correct_plain.txt'), 'utf8');
+const expected3 = readFileSync(getFixturePath('correct_json.txt'), 'utf8');
 
 test('gendiff nested JSON', () => {
   expect(genDiff(file1, file2)).toBe(expected1);
@@ -29,4 +30,12 @@ test('gendiff plain JSON', () => {
 
 test('gendiff plain YAML', () => {
   expect(genDiff(file3, file4, 'plain')).toBe(expected2);
+});
+
+test('gendiff stringify JSON', () => {
+  expect(genDiff(file1, file2, 'json')).toBe(expected3);
+});
+
+test('gendiff stringify YAML', () => {
+  expect(genDiff(file3, file4, 'json')).toBe(expected3);
 });
