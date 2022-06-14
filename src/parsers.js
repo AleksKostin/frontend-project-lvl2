@@ -9,7 +9,7 @@ const getParseFile = (filePath) => {
   } if (formatFile === '.yml' || formatFile === '.yaml') {
     return yaml.load(readFile(filePath));
   }
-  return 'error';
+  throw new Error(`${formatFile} not supported`);
 };
 
 export default getParseFile;
