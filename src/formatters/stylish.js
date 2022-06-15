@@ -1,12 +1,13 @@
 import _ from 'lodash';
 
 const tab = '  ';
+const newDeepIndent = 2;
 
 const valueParsing = (val, lvl) => {
   if (!_.isObject(val)) {
     return val;
   }
-  const currentIndent = tab.repeat(lvl + 2);
+  const currentIndent = tab.repeat(lvl + newDeepIndent);
   const bracketIndent = tab.repeat(lvl);
   const obj = Object.entries(val);
   const lines = obj.map(([currentKey, currentVal]) => `${currentIndent}${currentKey}: ${valueParsing(currentVal, lvl + 2)}`);
@@ -33,7 +34,7 @@ const stylish = (diff) => {
         case 'changed':
           return `${indent}- ${key}: ${valueParsing(oldValue, depth + 1)}\n${indent}+ ${key}: ${valueParsing(newValue, depth + 1)}`;
         case 'nested':
-          return `${indent}  ${key}: ${iter(children, depth + 2)}${indent}`.replace(`}${indent}`, `${indent}  }`);
+          return `${indent}  ${key}: ${iter(children, depth + newDeepIndent)}${indent}`.replace(`}${indent}`, `${indent}  }`);
         case 'unchanged':
           return `${indent}  ${key}: ${valueParsing(value, depth + 1)}`;
         default:
