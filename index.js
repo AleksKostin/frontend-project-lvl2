@@ -1,6 +1,6 @@
-import getParseFile from './parsers.js';
-import { getAstDiff } from './utils.js';
-import formattedDiff from './formatters/index.js';
+import getParseFile from './src/parsers.js';
+import { getAstDiff } from './src/utils.js';
+import formattedDiff from './src/formatters/index.js';
 
 const genDiff = (filePath1, filePath2, formatter) => {
   const data1 = getParseFile(filePath1);
