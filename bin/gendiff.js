@@ -11,7 +11,7 @@ program
   .argument('<filePath2>')
   .option('-f, --format <type>', 'output format', 'stylish')
   .helpOption('-h, --help', 'output usage information')
-  .action((filePath1, filePath2, formatter) => {
-    console.log(genDiff(filePath1, filePath2, formatter));
+  .action((filePath1, filePath2, option) => {
+    console.log(genDiff(filePath1, filePath2, option.format));
   });
 program.parse();
