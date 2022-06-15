@@ -17,11 +17,11 @@ const expected2 = readFileSync(getFixturePath('correct_plain.txt'), 'utf8');
 const expected3 = readFileSync(getFixturePath('correct_json.txt'), 'utf8');
 
 test('gendiff nested JSON', () => {
-  expect(genDiff(file1, file2)).toBe(expected1);
+  expect(genDiff(file1, file2, 'stylish')).toBe(expected1);
 });
 
 test('gendiff nested YAML', () => {
-  expect(genDiff(file3, file4)).toBe(expected1);
+  expect(genDiff(file3, file4, 'stylish')).toBe(expected1);
 });
 
 test('gendiff plain JSON', () => {
