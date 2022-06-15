@@ -13,14 +13,14 @@ export const getAstDiff = (data1, data2) => {
   return keys.map((key) => {
     const value1 = data1[key];
     const value2 = data2[key];
-    if (!Object.hasOwn(data1, key)) {
+    if (!_.has(data1, key)) {
       return {
         key,
         value: value2,
         type: 'added',
       };
     }
-    if (!Object.hasOwn(data2, key)) {
+    if (!_.has(data2, key)) {
       return {
         key,
         value: value1,
